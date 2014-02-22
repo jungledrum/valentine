@@ -2,11 +2,15 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('main.views.index',
-    url(r'^$', 'index'),
-    url(r'^hi$', 'hi')
+    url(r'^$', 'index', name='index'),
+
 )
 
-urlpatterns = patterns('main.views.user',
+urlpatterns += patterns('main.views.user',
+    url(r'^login$', 'login', name='login'),
+    url(r'^logout$', 'logout', name='logout'),
+    url(r'^register$', 'register', name='register'),
+
     url(r'^users$', 'index'),
     url(r'^users/new$', 'new'),
     url(r'^users/create$', 'create'),
@@ -14,4 +18,14 @@ urlpatterns = patterns('main.views.user',
     url(r'^users/(<?P<id>.+)/edit$', 'edit'),
     url(r'^users/(<?P<id>.+)/update$', 'update'),
     url(r'^users/(<?P<id>.+)/destroy$', 'destroy'),
+)
+
+urlpatterns += patterns('main.views.product',
+    url(r'^products$', 'index', name='products_index'),
+    url(r'^products/new$', 'new', name='products_new'),
+    url(r'^products/create$', 'create', name='products_create'),
+    url(r'^products/(?P<id>.+)$', 'show', name='products_show'),
+    url(r'^products/(?P<id>.+)/edit$', 'edit'),
+    url(r'^products/(?P<id>.+)/update$', 'update'),
+    url(r'^products/(?P<id>.+)/destroy$', 'destroy'),
 )

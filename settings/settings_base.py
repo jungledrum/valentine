@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mongoengine.django.mongo_auth',
     'main'
 )
 
@@ -150,3 +151,19 @@ LOGGING = {
         },
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+
+MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+
+from mongoengine import connect
+connect('valentine')
+
+LOGIN_URL = '/login'
