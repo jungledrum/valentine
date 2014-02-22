@@ -1,35 +1,48 @@
 {% extends "layout.html" %}
 
 {% block left %}
-<h2 class="title">今日推荐</h2>
-<h1 class="title">Top 50 商品</h1>
-<ul class="list-group">
+<h2 class="title"><span>今日推荐<span></h2>
+<div class="">
   {% for product in products %}
-  <li class="list-group-item">
+  <div class="product-item">
     <a href="{% url 'products_show' product.id|title %}">
-      <img alt="" class="placeimg center-block" src="{{ product.images }}" width="274">
+      <img alt="" class="product-img center-block" src="{{ product.images }}" width="274">
     </a>
-    <h3 class="middle">{{ product.name }}</h3>
-    <h5 class="middle">1900 Broadway, New York, NY</h5>
-    <div class="middle">
+    <!-- <h3 class="middle">{{ product.name }}</h3> -->
+<!--     <div class="middle">
       <span class="label label-warning">{{ product.category }}</span>
-    </div>
-  </li>
+    </div> -->
+  </div>
   {% endfor %}
-</ul>
+</div>
 {% endblock %}
 
 {% block right %}
 <div class="header"></div>
-<div class="center-block">
-  <img alt="" class="placeimg center-block" src="{{ product.images }}" width="274">
-  <h3 class="middle">{{ product.name }}</h3>
-  <h5 class="middle">1900 BROADWAY, NEW YORK, NY</h5>
-  <div class="middle picture_intro">
-    <img alt="COZY" class="vibesimg" src="http://www.triplagent.com/uploads/production/vibe/image_2x/e88786a51383062005.8016055.png" width="95">
-    <img alt="FRESH" class="vibesimg" src="http://www.triplagent.com/uploads/production/vibe/image_2x/59b5fd081383062969.4116983.png" width="95">
-    <img alt="BAD ASS" class="vibesimg" src="http://www.triplagent.com/uploads/production/vibe/image_2x/0cc2846d1383062707.4013083.png" width="95">
+<div class="center-block" id="detail">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active product-img">
+        <img src="{{ product.images }}" alt="...">
+      </div>
+      <div class="item product-img">
+        <img src="{{ product.images }}" alt="...">
+      </div>
+      <div class="item product-img">
+        <img src="{{ product.images }}" alt="...">
+      </div>
+    </div>
   </div>
-  <p class="center-block middle intro">{{ product.desc }}</p>
+  <h3 class="middle name">{{ product.name }}</h3>
+  <div class="middle">
+    <span>￥{{ product.price }}</span>
+    <a href="{{ product.buy_url }}" class="btn btn-success">去淘宝购买</a>
+  </div>
+  <p class="intro">{{ product.desc }}</p>
 </div>
 {% endblock %}

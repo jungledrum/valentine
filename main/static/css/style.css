@@ -1,18 +1,15 @@
-.red {
-  background-color: red;
+a:hover{
+  text-decoration: none;
 }
 
-.green {
-  background-color: green;
+.logo a{
+  color: black;
 }
-
-.yellow {
-  background-color: yellow;
-}
-
 
 .title {
   text-align: center;
+  font-size: 20px;
+  padding: 20px;
 }
 
 .middle{
@@ -24,7 +21,8 @@
 }
 
 .intro{
-    width: 300px;
+    /*width: 300px;*/
+    padding: 10px 10px;
 }
 
 .picture_intro{
@@ -38,7 +36,7 @@ html, body{
 
 /* Let's get this party started */
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 1px;
 }
  
 /* Track */
@@ -57,4 +55,67 @@ html, body{
 }
 ::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(255,0,0,0.4); 
+}
+
+#navbar{
+  padding: 0;
+  height: 100%;
+  /*background-color: #e74c3c;*/
+}
+
+#navbar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li{
+  text-align: center;
+  padding: 10px 20px;
+}
+
+#navbar li a{
+  /*color: #ecf0f1;*/
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#navbar li:hover{
+  background-color: #c0392b;
+}
+
+#navbar .logo{
+  background-color: white;
+  text-align: center;
+  font-size: 20px;
+  padding: 40px 10px;
+}
+
+.wm1{
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
+  writing-mode: vertical-lr;
+  *writing-mode: tb-lr;/* IE 写法 */
+  unicode-bidi : bidi-override;
+}
+
+.product-item{
+  padding: 40px 0;
+}
+
+.product-img{
+  border-radius: 50%;
+}
+
+#detail .name{
+  font-size: 16px;
+}
+
+#detail .product-img{
+  text-align: center;
+}
+
+#detail .product-img img{
+  display: inline;
 }
