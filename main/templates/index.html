@@ -5,7 +5,7 @@
 <div class="">
   {% for product in products %}
   <div class="product-item">
-    <a href="{% url 'products_show' product.id|title %}">
+    <a href="{% url 'products_show' product.id|title %}" name="product-show">
       <img alt="" class="product-img center-block" src="{{ product.images }}" width="274">
     </a>
     <!-- <h3 class="middle">{{ product.name }}</h3> -->
@@ -28,21 +28,40 @@
     </ol>
     <div class="carousel-inner">
       <div class="item active product-img">
-        <img src="{{ product.images }}" alt="...">
+        <img src="{{ product.images }}" alt="..." data="product-images" width="360" height="360">
       </div>
       <div class="item product-img">
-        <img src="{{ product.images }}" alt="...">
+        <img src="{{ product.images }}" alt="..." data="product-images" width="360" height="360">
       </div>
       <div class="item product-img">
-        <img src="{{ product.images }}" alt="...">
+        <img src="{{ product.images }}" alt="..." data="product-images" width="360" height="360">
       </div>
     </div>
   </div>
-  <h3 class="middle name">{{ product.name }}</h3>
+  <h3 class="middle name" data="product-name">{{ product.name }}</h3>
   <div class="middle">
-    <span>￥{{ product.price }}</span>
+    ￥<span data="product-price">{{ product.price }}</span>
     <a href="{{ product.buy_url }}" class="btn btn-success">去淘宝购买</a>
   </div>
-  <p class="intro">{{ product.desc }}</p>
+  <div class="intro">
+    <p data="product-intro">{{ product.desc }}</p>
+  </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  $(function(){
+    $('a[name="product-show"]').click(function(){
+      var url = $(this).attr('href')
+      $.get(url, function(data){
+        $('h3[data="product-name"]').text(data.name)
+        $('img[data="product-images"]').attr('src', data.images)
+        $('span[data="product-price"]').text(data.price)
+        $('p[data="product-intro"]').text(data.desc)
+      })
+      return false
+    })
+  })
+</script>
 {% endblock %}

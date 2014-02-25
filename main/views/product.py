@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
 from main.models.product import Products
+from lib.crawler import crawl
 
 
 def index(req):
@@ -13,13 +14,17 @@ def index(req):
 
 
 def show(req, id):
-    product = Products.objects.with_id(id)
-    products = Products.objects
-    context = {
-        'product': product,
-        'products': products
-    }
-    return render(req, 'index.html', context)
+    if req.is_ajax():
+        product = Products.objects.with_id(id)
+        return HttpResponse(product.to_json(), mimetype='application/json')
+    else:
+        product = Products.objects.with_id(id)
+        products = Products.objects
+        context = {
+            'product': product,
+            'products': products
+        }
+        return render(req, 'index.html', context)
 
 
 @login_required
@@ -51,3 +56,11 @@ def update(req):
 @login_required
 def destroy(req):
     pass
+
+
+@login_required
+def transform(req):
+    url = req.POST.get('url', '')
+    product = crawl(url)
+    print product
+    return render(req, 'new.html', {'product': product})

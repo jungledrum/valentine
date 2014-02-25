@@ -21,8 +21,16 @@ a:hover{
 }
 
 .intro{
+    padding: 0px 50px;  
+}
+
+.intro p{
     /*width: 300px;*/
-    padding: 10px 10px;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top-style: solid;
+    border-top-color: #7f8c8d;
+    border-top-width: 1px;
 }
 
 .picture_intro{
@@ -109,7 +117,8 @@ html, body{
 }
 
 #detail .name{
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 #detail .product-img{
