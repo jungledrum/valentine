@@ -7,8 +7,7 @@
     <title>Today</title>
 
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/style.css"> -->
 
   </head>
   <body>
@@ -57,7 +56,9 @@
             </div>
             <div class="form-group">
               <label>图片集</label>
-              <input type="text" class="form-control" placeholder="" name="images" value="{{ product.images }}">
+              {% for image in product.images %}
+              <input type="text" class="form-control" placeholder="" name="images" value="{{ image }}">
+              {% endfor %}
             </div>
             <div class="form-group">
               <label>描述</label>

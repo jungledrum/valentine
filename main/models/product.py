@@ -1,13 +1,16 @@
-from mongoengine import (Document,
-                         StringField,
-                         DateTimeField)
+from mongoengine import (
+    Document,
+    StringField,
+    DateTimeField,
+    ListField
+)
 
 
 class Products(Document):
     banner = StringField()
     name = StringField()
     price = StringField()
-    images = StringField()
+    images = ListField()
     category = StringField()
     sub_category = StringField()
     buy_url = StringField()

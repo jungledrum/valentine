@@ -36,7 +36,13 @@ def new(req):
 @login_required
 def create(req):
     form = req.POST.dict()
+    print form
     product = Products(**form)
+
+    images = req.POST.getlist('images', [])
+    images = map(lambda x: x.replace('60x60', '360x360') ,images)
+    product.images = images
+
     product.created_at = datetime.now()
     product.updated_at = datetime.now()
     product.save()
@@ -62,5 +68,4 @@ def destroy(req):
 def transform(req):
     url = req.POST.get('url', '')
     product = crawl(url)
-    print product
     return render(req, 'new.html', {'product': product})

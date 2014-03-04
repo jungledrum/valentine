@@ -6,7 +6,7 @@
   {% for product in products %}
   <div class="product-item">
     <a href="{% url 'products_show' product.id|title %}" name="product-show">
-      <img alt="" class="product-img center-block" src="{{ product.images }}" width="274">
+      <img alt="" class="product-img center-block" src="{{ product.images.0 }}" width="274">
     </a>
     <!-- <h3 class="middle">{{ product.name }}</h3> -->
 <!--     <div class="middle">
@@ -27,21 +27,21 @@
       <li data-target="#carousel-example-generic" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
+      {% for image in product.images %}
+      {% if forloop.counter == 1 %}
       <div class="item active product-img">
-        <img src="{{ product.images }}" alt="..." data="product-images" width="360" height="360">
-      </div>
+      {% else %}
       <div class="item product-img">
-        <img src="{{ product.images }}" alt="..." data="product-images" width="360" height="360">
+      {% endif %}
+        <img src="{{ image }}" alt="..." data="product-images" width="360" height="360">
       </div>
-      <div class="item product-img">
-        <img src="{{ product.images }}" alt="..." data="product-images" width="360" height="360">
-      </div>
+      {% endfor %}
     </div>
   </div>
   <h3 class="middle name" data="product-name">{{ product.name }}</h3>
   <div class="middle">
     ￥<span data="product-price">{{ product.price }}</span>
-    <a href="{{ product.buy_url }}" class="btn btn-success">去淘宝购买</a>
+    <a href="{{ product.buy_url }}" class="btn btn-success" target="_blank">去淘宝购买</a>
   </div>
   <div class="intro">
     <p data="product-intro">{{ product.desc }}</p>
@@ -55,13 +55,16 @@
     $('a[name="product-show"]').click(function(){
       var url = $(this).attr('href')
       $.get(url, function(data){
-        $('h3[data="product-name"]').text(data.name)
-        $('img[data="product-images"]').attr('src', data.images)
-        $('span[data="product-price"]').text(data.price)
-        $('p[data="product-intro"]').text(data.desc)
+        // $('h3[data="product-name"]').text(data.name)
+        // $('img[data="product-images"]').attr('src', data.images)
+        // $('span[data="product-price"]').text(data.price)
+        // $('p[data="product-intro"]').text(data.desc)
+        var output = Mustache.to_html("{{ name}} spends {{price}}", data);
+        console.log(output)
       })
       return false
     })
+
   })
 </script>
 {% endblock %}
