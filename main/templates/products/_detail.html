@@ -1,0 +1,29 @@
+<div class="header"></div>
+<div class="center-block" id="detail">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      {% for image in product.images %}
+      {% if forloop.counter == 1 %}
+      <div class="item active product-img">
+      {% else %}
+      <div class="item product-img">
+      {% endif %}
+        <img src="{{ image }}" alt="..." data="product-images" width="360" height="360">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <h3 class="middle name" data="product-name">{{ product.name }}</h3>
+  <div class="middle">
+    ￥<span data="product-price">{{ product.price }}</span>
+    <a href="{{ product.buy_url }}" class="btn btn-success" target="_blank">去淘宝购买</a>
+  </div>
+  <div class="intro">
+    <!-- <p data="product-intro">{{ product.desc }}</p> -->
+  </div>
+</div>

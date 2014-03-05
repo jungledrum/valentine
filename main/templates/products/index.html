@@ -1,0 +1,24 @@
+{% extends "layout_admin.html" %}
+
+{% block right %}
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Banner</th>
+    <th>Operate</th>
+  </tr>
+  {% for product in products %}
+  <tr>
+    <td>{{ product.name }}</td>
+    <td>{{ product.price }}</td>
+    <td>{{ product.banner }}</td>
+    <td>
+      | <a href="{% url 'products_edit' product.id|title %}">Edit</a> | 
+      <a href="{% url 'products_destroy' product.id|title %}">X</a> |
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+
