@@ -3,7 +3,8 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns('main.views.index',
     url(r'^$', 'index', name='index'),
-    url(r'^redirect$', 'redirect_to', name='redirect')
+    url(r'^redirect$', 'redirect_to', name='redirect'),
+    url(r'^xtaoAuth.html$', 'xtaoAuth')
 
 )
 

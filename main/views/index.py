@@ -12,6 +12,10 @@ def index(req):
     return render(req, 'index.html', context)
 
 
+def xtaoAuth(req):
+    return render(req, 'xtaoAuth.html')
+
+
 def redirect_to(req):
     next_url = req.GET.get('url', 'http://www.weiaimeishi.com')
     urls = [
